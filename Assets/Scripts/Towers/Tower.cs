@@ -26,11 +26,12 @@ public abstract class Tower : MonoBehaviour
 		}
 	}
 	protected Rigidbody2D hitbox;
-	public abstract TowerType towerType { get; }
 	public TowerType detection;
 
-	public float cooldown = 0.1f;
-	public int damage;
+	public abstract TowerType towerType { get; }
+	public abstract int damage { get; }
+	public virtual float cooldown { get => 0.1f; }
+	
 	protected float attackCooldown = 0;
 
 	public virtual void Awake()
@@ -44,7 +45,16 @@ public abstract class Tower : MonoBehaviour
 
 	public virtual void Update()
 	{
-		if(Active) Shoot(Time.deltaTime);
+		if(Active)
+		{
+			attackCooldown += Time.deltaTime;
+
+			while(attackCooldown > cooldown)
+			{
+				Shoot();
+				attackCooldown -= cooldown;
+			}
+		}
 		if(activeCooldown > 0)
 		{
 			activeCooldown -= Time.deltaTime;
@@ -52,7 +62,30 @@ public abstract class Tower : MonoBehaviour
 		}
 	}
 
-	public abstract void Shoot(float deltaTime);
+	public virtual void Shoot()
+	{
+		RaycastHit2D[] targets = new RaycastHit2D[128];
+		hitbox.Cast(Vector2.up, targets, 0);
+
+		foreach(RaycastHit2D target in targets)
+		{
+			if(!target) break;
+
+			Tower tower = target.collider.GetComponent<Tower>();
+			EnemyController enemy = target.collider.GetComponent<EnemyController>();
+			if(tower != null)
+			{
+				if(tower == this) continue;
+
+				if(tower.detection == towerType) tower.Active = true;
+			}
+			else if(enemy != null)
+			{
+				print("AAAAAAAAAAAAAAAAAA");
+				enemy.TakeDamage(damage);
+			}
+		}
+	}
 
 	public static void DisableTowers()
 	{
