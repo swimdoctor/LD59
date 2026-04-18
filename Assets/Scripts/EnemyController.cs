@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     public int damage = 10;
 
     public GameObject player;
+    public EnemyType enemyType;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,4 +31,11 @@ public class EnemyController : MonoBehaviour
             Destroy(gameObject);
 		}
 	}
+
+    public enum EnemyType
+    {
+        TestMonster,
+        TestMonster2,
+        EyeMonster
+    }
 }
