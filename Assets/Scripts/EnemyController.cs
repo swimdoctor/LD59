@@ -6,8 +6,9 @@ public class EnemyController : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public int damage = 10;
-
     public GameObject player;
+    public PlayerController guy;
+
     public EnemyType enemyType;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,6 +32,11 @@ public class EnemyController : MonoBehaviour
             Destroy(gameObject);
 		}
 	}
+
+    void OnDestroy()
+{
+    guy.AddMoney(10);
+}
 
     public enum EnemyType
     {
