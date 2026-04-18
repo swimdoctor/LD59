@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 public class EnemyController : MonoBehaviour
 {
@@ -9,6 +11,12 @@ public class EnemyController : MonoBehaviour
 
     public GameObject player;
     public EnemyType enemyType;
+
+    // Pathing
+    // Path vectors is initialized by the WaveSpawner instantiation
+    private List<Vector2> pathVectors;
+    private int pathNodeIndex = 0;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,9 +26,35 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = (Vector3)player.transform.position - (Vector3)transform.position;
-        direction.Normalize();
-        transform.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
+        MoveEnemy();
+        // Vector3 direction = (Vector3)player.transform.position - (Vector3)transform.position;
+        // direction.Normalize();
+        // transform.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
+    }
+
+    public void SetPathVectors(List<Vector2> vectors)
+    {
+        pathVectors = vectors;
+    }
+
+    void MoveEnemy()
+    {
+        // Ensure we don't go OOB
+        if (pathNodeIndex < pathVectors.Count)
+        {
+            Vector2 targetVec = pathVectors[pathNodeIndex];
+
+            transform.position = Vector2.MoveTowards(
+                transform.position,
+                targetVec,
+                moveSpeed * Time.deltaTime
+            );
+
+            if (Vector2.Distance(transform.position, targetVec) < 0.1f)
+            {
+                pathNodeIndex++;
+            }
+        }
     }
 
 	public void TakeDamage(int amount)
@@ -34,8 +68,8 @@ public class EnemyController : MonoBehaviour
 
     public enum EnemyType
     {
-        TestMonster,
-        TestMonster2,
+        TestEnemy1,
+        TestEnemy2,
         EyeMonster
     }
 }

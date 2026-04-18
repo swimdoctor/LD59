@@ -17,11 +17,15 @@ public class WaveSpawner : MonoBehaviour
     [Header("Enter the path relative to Resources **WITHOUT** the file extension (no .json)")]
     public string fileNameWaves = "TestDifficulty";
 
+    // Wave Tracking
     private double timer;
     private int currentWaveIndex = 0;
     private int currentSubwaveIndex = 0;
     private int enemiesSpawnedInSubwave = 0;
     private bool pauseEnemySpawn = true;
+
+    // PathingManager
+    public PathManager pathManager;
 
     void Update()
     {
@@ -75,8 +79,9 @@ public class WaveSpawner : MonoBehaviour
     {
         // Spawn the enemy
         GameObject enemy = Instantiate(enemyNameToPrefab[enemyName]);
-        enemy.transform.position = transform.position;
+        enemy.transform.position = pathManager.getStartingPosition();
         enemy.GetComponent<EnemyController>().player = player;
+        enemy.GetComponent<EnemyController>().SetPathVectors(pathManager.getPathVectors());
 
         // Update the counters
         if(waveList.waves[currentWaveIndex].subwaves[currentSubwaveIndex].count > enemiesSpawnedInSubwave + 1) {
