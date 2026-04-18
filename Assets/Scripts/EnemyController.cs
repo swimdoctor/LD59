@@ -21,4 +21,13 @@ public class EnemyController : MonoBehaviour
         direction.Normalize();
         transform.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
     }
+
+	public void TakeDamage(int amount)
+	{
+		currentHealth -= amount;
+		if(currentHealth <= 0)
+		{
+            Destroy(gameObject);
+		}
+	}
 }

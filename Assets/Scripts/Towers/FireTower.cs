@@ -18,19 +18,18 @@ public class FireTower : Tower
 				if(!target) break;
 
 				Tower tower = target.collider.GetComponent<Tower>();
-				//Enemy enemy = target.collider.GetComponent<Enemy>();
+				EnemyController enemy = target.collider.GetComponent<EnemyController>();
 				if(tower != null)
 				{
 					if(tower == this) continue;
-					print("AAAAAAAAAAAAAAAAAA");
-					if(tower.detection == towerType) tower.active = true;
+					
+					if(tower.detection == towerType) tower.Active = true;
 				}
-				/*
 				else if(enemy != null)
 				{
-					enemy.Damage(damage);
+					print("AAAAAAAAAAAAAAAAAA");
+					enemy.TakeDamage(damage);
 				}
-				*/
 			}
 
 			attackCooldown -= cooldown;

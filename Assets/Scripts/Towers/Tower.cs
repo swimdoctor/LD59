@@ -13,13 +13,24 @@ public abstract class Tower : MonoBehaviour
 {
 	public static List<Tower> towers;
 
-	public bool active;
-	public Rigidbody2D hitbox;
+	public bool starting;
+
+	[SerializeField] private bool active;
+	public bool Active 
+	{
+		get => active;
+		set
+		{
+			active = value;
+			hitbox.GetComponent<SpriteRenderer>().enabled = value;
+		}
+	}
+	protected Rigidbody2D hitbox;
 	public abstract TowerType towerType { get; }
 	public TowerType detection;
 
-	public float cooldown = 0.05f;
-	public float damage;
+	public float cooldown = 0.1f;
+	public int damage;
 	protected float attackCooldown = 0;
 
 	public virtual void Awake()
@@ -28,11 +39,12 @@ public abstract class Tower : MonoBehaviour
 		if(!towers.Contains(this)) towers.Add(this);
 
 		hitbox = transform.Find("Hitbox").GetComponent<Rigidbody2D>();
+		Active = starting || active;
 	}
 
 	public void Update()
 	{
-		if(active) Shoot(Time.deltaTime);
+		if(Active) Shoot(Time.deltaTime);
 	}
 
 	public abstract void Shoot(float deltaTime);
