@@ -63,3 +63,4 @@ crashlytics-build.properties
 
 # Ignore user settings
 UserSettings/
+.DS_Store
