@@ -4,6 +4,8 @@ using System.Diagnostics;
 using System.Data;
 using System.IO;
 using System;
+using UnityEngine.InputSystem;
+
 public class WaveSpawner : MonoBehaviour
 {
     // Lets names of enemies map to their prefabs in the scene
@@ -18,9 +20,17 @@ public class WaveSpawner : MonoBehaviour
     private double timer;
     private int currentWaveIndex = 0;
     private int currentSubwaveIndex = 0;
+    private int enemiesSpawnedInSubwave = 0;
+    private bool pauseEnemySpawn = true;
 
     void Update()
     {
+        // FIXME: Replace with a button in UI later to start the wave
+        // Might want this in some other area, but the call to StartWave() should be in this class
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            StartWave();
+        }
         CheckEnemySpawn();
     }
 
@@ -28,46 +38,68 @@ public class WaveSpawner : MonoBehaviour
     {
         // Parse the wave 
         string path = Path.Combine("Waves", fileNameWaves);
-    
-        UnityEngine.Debug.Log(path);
-        TextAsset file = Resources.Load<TextAsset>("TestDifficulty");
+        TextAsset file = Resources.Load<TextAsset>(path);
         UnityEngine.Debug.Log(file);
         string json = file.text;
         waveList = JsonUtility.FromJson<WaveList>(json);
-        foreach(var wave in waveList.waves)
-        {
-            UnityEngine.Debug.Log(wave);
-            UnityEngine.Debug.Log(wave.waveNumber);
-            UnityEngine.Debug.Log(wave.subwaves[0]);
-            UnityEngine.Debug.Log(wave.subwaves[0].spawnInterval);
-        }
-        UnityEngine.Debug.Log(waveList);
     
-        
-
         // Create map of enemy names to their prefabs for instantiation
         enemyNameToPrefab = new Dictionary<string, GameObject>();
         foreach (GameObjectMapping o in enemyNameMappings) {
             enemyNameToPrefab[o.key] = o.value; 
         }
-        UnityEngine.Debug.Log(enemyNameToPrefab);
+
+        print("Press Space to start spawning waves");
+    }
+
+    void StartWave() {
+        pauseEnemySpawn = false;
+        timer = 0;
     }
 
     void CheckEnemySpawn()
     {
-        timer += Time.deltaTime;
+        if(!pauseEnemySpawn){
+            timer += Time.deltaTime;
 
-        if (timer >= waveList.waves[currentWaveIndex].subwaves[currentSubwaveIndex].spawnInterval)
-        {
-            SpawnEnemy(waveList.waves[currentWaveIndex].subwaves[currentSubwaveIndex].type);
-            timer -= waveList.waves[currentWaveIndex].subwaves[currentSubwaveIndex].spawnInterval;
+            // If the next enemy's time is up, spawn it in
+            if (timer >= waveList.waves[currentWaveIndex].subwaves[currentSubwaveIndex].spawnInterval)
+            {
+                SpawnEnemy(waveList.waves[currentWaveIndex].subwaves[currentSubwaveIndex].type);
+                timer -= waveList.waves[currentWaveIndex].subwaves[currentSubwaveIndex].spawnInterval;
+            }
         }
     }
 
     void SpawnEnemy(string enemyName)
     {
+        // Spawn the enemy
         GameObject enemy = Instantiate(enemyNameToPrefab[enemyName]);
         enemy.transform.position = transform.position;
         enemy.GetComponent<EnemyController>().player = player;
+
+        // Update the counters
+        if(waveList.waves[currentWaveIndex].subwaves[currentSubwaveIndex].count > enemiesSpawnedInSubwave + 1) {
+            // If we have more enemies to spawn in the wave, spawn them
+            enemiesSpawnedInSubwave++;
+        } else {
+            enemiesSpawnedInSubwave = 0;
+            // otherwise set up next spawn counters for the next wave
+            if(waveList.waves[currentWaveIndex].subwaves.Count > currentSubwaveIndex + 1) {
+                // Increment if there's another enemy in the subwave left
+                currentSubwaveIndex++;
+            } else {
+                currentSubwaveIndex = 0;
+                pauseEnemySpawn = true;
+                if(waveList.waves.Count > currentWaveIndex + 1) {
+                    // If there's another wave, increment it the counter so the next spawn is in the new wave
+                    currentWaveIndex++;
+                    pauseEnemySpawn = true;
+                    print("End of wave spawns. Press space to start new wave.");
+                } else {
+                    // FIXME: End of game. There's no more waves
+                }
+            }
+        }
     }
 }

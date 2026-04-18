@@ -3,14 +3,14 @@
     {
       "waveNumber": 1,
       "subwaves": [
-        { "type": "TestMonster", "count": 10, "spawnInterval": 1.0 }
+        { "type": "TestEnemy1", "count": 5, "spawnInterval": 1.0 }
       ]
     },
     {
       "waveNumber": 2,
       "subwaves": [
-        { "type": "TestMonster", "count": 15, "spawnInterval": 0.8 },
-        { "type": "TestMonster2", "count": 5, "spawnInterval": 0.5 }
+        { "type": "TestEnemy2", "count": 5, "spawnInterval": 0.8 },
+        { "type": "TestEnemy1", "count": 5, "spawnInterval": 0.5 }
       ]
     }
   ]
