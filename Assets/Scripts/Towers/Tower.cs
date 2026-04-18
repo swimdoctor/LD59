@@ -15,14 +15,14 @@ public abstract class Tower : MonoBehaviour
 
 	public bool starting;
 
-	[SerializeField] private bool active;
+	[SerializeField] private float activeCooldown;
 	public bool Active 
 	{
-		get => active;
+		get => activeCooldown > 0 || activeCooldown == -1;
 		set
 		{
-			active = value;
-			hitbox.GetComponent<SpriteRenderer>().enabled = value;
+			activeCooldown = (value ? 1 : 0);
+			hitbox.GetComponent<SpriteRenderer>().enabled = Active;
 		}
 	}
 	protected Rigidbody2D hitbox;
@@ -39,12 +39,17 @@ public abstract class Tower : MonoBehaviour
 		if(!towers.Contains(this)) towers.Add(this);
 
 		hitbox = transform.Find("Hitbox").GetComponent<Rigidbody2D>();
-		Active = starting || active;
+		if(starting) activeCooldown = -1;
 	}
 
-	public void Update()
+	public virtual void Update()
 	{
 		if(Active) Shoot(Time.deltaTime);
+		if(activeCooldown > 0)
+		{
+			activeCooldown -= Time.deltaTime;
+			if(activeCooldown < 0) Active = false;
+		}
 	}
 
 	public abstract void Shoot(float deltaTime);
