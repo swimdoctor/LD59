@@ -1,0 +1,18 @@
+{
+  "waves": [
+    {
+      "waveNumber": 1,
+      "subwaves": [
+        { "type": "TestEnemy1", "count": 10, "spawnInterval": 1.0 },
+        { "type": "TestEnemy2", "count": 5, "spawnInterval": 0.5 }
+      ]
+    },
+    {
+      "waveNumber": 2,
+      "subwaves": [
+        { "type": "TestEnemy1", "count": 15, "spawnInterval": 0.8 },
+        { "type": "TestEnemy2", "count": 5, "spawnInterval": 0.5 }
+      ]
+    }
+  ]
+}
