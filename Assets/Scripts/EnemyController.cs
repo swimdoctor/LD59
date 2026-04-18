@@ -5,6 +5,7 @@ public class EnemyController : MonoBehaviour
     public int moveSpeed = 2;
     public int maxHealth = 100;
     public int currentHealth;
+    public int damage = 10;
 
     public GameObject player;
     // Start is called once before the first execution of Update after the MonoBehaviour is created

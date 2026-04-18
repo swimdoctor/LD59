@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int amount)
     {
         currentHealth -= amount;
-        print("Health: " + amount);
+        print("Health: " + currentHealth);
         if (currentHealth <= 0)
         {
             print("u r a bum");
@@ -31,11 +31,17 @@ public class PlayerController : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         EnemyController enemy = collision.GetComponent<EnemyController>();
+        TakeDamage(enemy.damage);
 
         if (enemy != null)
         {
             Destroy(collision.gameObject);
         }
+    }
+
+    public float GetHealthPercent()
+    {
+        return (float)currentHealth / maxHealth;
     }
 
 }
