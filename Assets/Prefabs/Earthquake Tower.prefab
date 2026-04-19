@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 1122318430495439283}
   - component: {fileID: 4668220867901654084}
   - component: {fileID: 8172828753136355212}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Earthquake Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}

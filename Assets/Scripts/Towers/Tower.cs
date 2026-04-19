@@ -86,6 +86,11 @@ public abstract class Tower : MonoBehaviour
 		}
 	}
 
+	public virtual void UpgradeTower()
+	{
+		
+	}
+
 	public static void DisableTowers()
 	{
 		foreach(Tower tower in towers) tower.enabled = false;
