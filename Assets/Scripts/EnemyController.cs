@@ -8,8 +8,9 @@ public class EnemyController : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public int damage = 10;
-
     public GameObject player;
+    public PlayerController guy;
+
     public EnemyType enemyType;
 
     // Pathing
@@ -21,6 +22,9 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        if(guy==null){
+            guy=player.GetComponent<PlayerController>();
+        }
     }
 
     // Update is called once per frame
@@ -65,6 +69,11 @@ public class EnemyController : MonoBehaviour
             Destroy(gameObject);
 		}
 	}
+
+    void OnDestroy()
+{
+    guy.AddMoney(10);
+}
 
     public enum EnemyType
     {
