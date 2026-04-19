@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class EarthquakeTower : Tower
 {
-	public override TowerType towerType => TowerType.Earthquake;
-	public override int damage => 20;
-	public override float cooldown => 1f;
+	public override TowerType TowerType => TowerType.Earthquake;
+	public override int Damage => 20;
+	public override float Cooldown => 1f;
 
 	public float maxAlpha;
 	public float minAlpha;
@@ -13,6 +13,6 @@ public class EarthquakeTower : Tower
 	{
 		base.Update();
 
-		hitbox.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, Mathf.Lerp(maxAlpha, minAlpha, attackCooldown / cooldown));
+		hitbox.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, Mathf.Lerp(maxAlpha, minAlpha, attackCooldown / Cooldown));
 	}
 }

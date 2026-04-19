@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class LaserTower : Tower
 {
-	public override TowerType towerType => TowerType.Laser;
-	public override int damage => 3;
+	public override TowerType TowerType => TowerType.Laser;
+	public override int Damage => 3;
 
 	public override void Update()
 	{

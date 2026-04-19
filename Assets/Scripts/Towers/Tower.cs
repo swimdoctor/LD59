@@ -28,15 +28,15 @@ public abstract class Tower : MonoBehaviour
 	protected Rigidbody2D hitbox;
 	public TowerType detection;
 
-	public abstract TowerType towerType { get; }
-	public abstract int damage { get; }
-	public virtual float cooldown { get => 0.1f; }
+	public abstract TowerType TowerType { get; }
+	public abstract int Damage { get; }
+	public virtual float Cooldown { get => 0.1f; }
 	
 	protected float attackCooldown = 0;
 
 	public virtual void Awake()
 	{
-		if(towers == null) towers = new List<Tower>();
+		towers ??= new List<Tower>();
 		if(!towers.Contains(this)) towers.Add(this);
 
 		hitbox = transform.Find("Hitbox").GetComponent<Rigidbody2D>();
@@ -49,10 +49,10 @@ public abstract class Tower : MonoBehaviour
 		{
 			attackCooldown += Time.deltaTime;
 
-			while(attackCooldown > cooldown)
+			while(attackCooldown > Cooldown)
 			{
 				Shoot();
-				attackCooldown -= cooldown;
+				attackCooldown -= Cooldown;
 			}
 		}
 		if(activeCooldown > 0)
@@ -77,12 +77,12 @@ public abstract class Tower : MonoBehaviour
 			{
 				if(tower == this) continue;
 
-				if(tower.detection == towerType) tower.Active = true;
+				if(tower.detection == TowerType) tower.Active = true;
 			}
 			else if(enemy != null)
 			{
 				print("AAAAAAAAAAAAAAAAAA");
-				enemy.TakeDamage(damage);
+				enemy.TakeDamage(Damage);
 			}
 		}
 	}
