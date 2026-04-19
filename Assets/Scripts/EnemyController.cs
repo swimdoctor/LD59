@@ -14,6 +14,9 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        if(guy==null){
+            guy=player.GetComponent<PlayerController>();
+        }
     }
 
     // Update is called once per frame

@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public Money text;
-    public int money = 0;
+    public int money = 100;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
