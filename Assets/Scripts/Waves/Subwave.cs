@@ -7,4 +7,5 @@ public class Subwave {
     public string type;
     public int count;
     public double spawnInterval;
+    public int startTime;
 }
