@@ -2,24 +2,26 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.Tilemaps;
 
 public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public GameObject prefab;
     public Image icon;
 
-    private GameObject dragIcon;
     private Camera mainCamera;
     private PlayerController player;
     private float rotation = 0f;
     private GameObject placedObject;
+    public CompositeCollider2D tilemap;
 
     void Start()
     {
         mainCamera = Camera.main;
-        player = FindFirstObjectByType<PlayerController>();
+		player = FindFirstObjectByType<PlayerController>();
+		tilemap = FindFirstObjectByType<CompositeCollider2D>();
 
-        if (prefab != null)
+		if (prefab != null)
         {
             icon.sprite = prefab.GetComponent<SpriteRenderer>().sprite;
         }
@@ -33,8 +35,6 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if (Keyboard.current.eKey.isPressed) rotation -= 100f * Time.deltaTime;
 
         placedObject.transform.rotation = Quaternion.Euler(0, 0, rotation);
-        if (dragIcon != null)
-            dragIcon.transform.rotation = Quaternion.Euler(0, 0, rotation);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -47,38 +47,37 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         Vector3 worldPos = mainCamera.ScreenToWorldPoint(eventData.position);
         worldPos.z = 0f;
         placedObject = Instantiate(prefab, worldPos, Quaternion.identity);
-
-        dragIcon = new GameObject("DragIcon");
-        dragIcon.transform.SetParent(transform.root, false);
-        Image img = dragIcon.AddComponent<Image>();
-        img.sprite = icon.sprite;
-        img.raycastTarget = false;
-        RectTransform rt = dragIcon.GetComponent<RectTransform>();
-        rt.anchorMin = new Vector2(0.5f, 0.5f);
-        rt.anchorMax = new Vector2(0.5f, 0.5f);
-        rt.pivot = new Vector2(0.5f, 0.5f);
-        rt.sizeDelta = new Vector2(64, 64);
-        rt.position = eventData.position;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (dragIcon != null)
-            dragIcon.transform.position = eventData.position;
-
         if (placedObject != null)
         {
             Vector3 worldPos = mainCamera.ScreenToWorldPoint(eventData.position);
             worldPos.z = 0f;
-            placedObject.transform.position = worldPos;
-        }
+			worldPos.x = Mathf.Round(worldPos.x * 2) / 2;
+			worldPos.y = Mathf.Round(worldPos.y * 2) / 2;
+			placedObject.transform.position = worldPos;
+
+			if(CheckValidPosition(worldPos)) placedObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.5f);
+            else placedObject.GetComponent<SpriteRenderer>().color = new Color(1, .5f, .5f, 0.5f);
+		}
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (dragIcon != null)
-            Destroy(dragIcon);
-
         placedObject = null;
+    }
+
+    public bool CheckValidPosition(Vector3 pos)
+    {
+        if(tilemap.OverlapPoint(pos)) return false;
+
+        foreach(Tower t in Tower.towers)
+        {
+            if(Vector3.Distance(t.transform.position, pos) < .9) return false;
+        }
+
+		return true;
     }
 }
