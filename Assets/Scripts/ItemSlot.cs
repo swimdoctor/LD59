@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
@@ -10,12 +11,12 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private GameObject dragIcon;
     private Camera mainCamera;
     private PlayerController player;
+    private float rotation = 0f;
+    private GameObject placedObject;
 
     void Start()
     {
         mainCamera = Camera.main;
-
-        // Find the PlayerController
         player = FindFirstObjectByType<PlayerController>();
 
         if (prefab != null)
@@ -24,15 +25,25 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
     }
 
-    private GameObject placedObject;
+    void Update()
+    {
+        if (placedObject == null) return;
+
+        if (Keyboard.current.qKey.isPressed) rotation += 100f * Time.deltaTime;
+        if (Keyboard.current.eKey.isPressed) rotation -= 100f * Time.deltaTime;
+
+        placedObject.transform.rotation = Quaternion.Euler(0, 0, rotation);
+        if (dragIcon != null)
+            dragIcon.transform.rotation = Quaternion.Euler(0, 0, rotation);
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        // Only allow drag if player has at least 50 money
         if (player == null || player.money < 50)
             return;
         player.ChangeMoney(-50);
-        // create prefab
+        rotation = 0f;
+
         Vector3 worldPos = mainCamera.ScreenToWorldPoint(eventData.position);
         worldPos.z = 0f;
         placedObject = Instantiate(prefab, worldPos, Quaternion.identity);
@@ -52,7 +63,6 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnDrag(PointerEventData eventData)
     {
-        // move both icon and prefab
         if (dragIcon != null)
             dragIcon.transform.position = eventData.position;
 
@@ -69,7 +79,6 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         if (dragIcon != null)
             Destroy(dragIcon);
 
-        if (placedObject != null) 
-            placedObject = null;
+        placedObject = null;
     }
 }
