@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections; 
 using UnityEngine;
 using System.Diagnostics;
 using System.Data;
@@ -20,9 +21,6 @@ public class WaveSpawner : MonoBehaviour
     // Wave Tracking
     private double timer;
     private int currentWaveIndex = 0;
-    private int currentSubwaveIndex = 0;
-    private int enemiesSpawnedInSubwave = 0;
-    private bool pauseEnemySpawn = true;
 
     // PathingManager
     public PathManager pathManager;
@@ -35,7 +33,6 @@ public class WaveSpawner : MonoBehaviour
         {
             StartWave();
         }
-        CheckEnemySpawn();
     }
 
     void Start()
@@ -57,21 +54,20 @@ public class WaveSpawner : MonoBehaviour
     }
 
     void StartWave() {
-        pauseEnemySpawn = false;
-        timer = 0;
+        for(int i = 0; i < waveList.waves[currentWaveIndex].subwaves.Count; i++)
+        {
+            StartCoroutine(SpawnWave(waveList.waves[currentWaveIndex].subwaves[i]));
+        }
+        currentWaveIndex++;
     }
 
-    void CheckEnemySpawn()
+    IEnumerator SpawnWave(Subwave wave)
     {
-        if(!pauseEnemySpawn){
-            timer += Time.deltaTime;
-
-            // If the next enemy's time is up, spawn it in
-            if (timer >= waveList.waves[currentWaveIndex].subwaves[currentSubwaveIndex].spawnInterval)
-            {
-                SpawnEnemy(waveList.waves[currentWaveIndex].subwaves[currentSubwaveIndex].type);
-                timer -= waveList.waves[currentWaveIndex].subwaves[currentSubwaveIndex].spawnInterval;
-            }
+        yield return new WaitForSeconds(wave.startTime);
+        for(int i = 0; i < wave.count; i++)
+        {
+            SpawnEnemy(wave.type);
+            yield return new WaitForSeconds((float)wave.spawnInterval);
         }
     }
 
@@ -82,29 +78,5 @@ public class WaveSpawner : MonoBehaviour
         enemy.transform.position = pathManager.getStartingPosition();
         enemy.GetComponent<EnemyController>().player = player;
         enemy.GetComponent<EnemyController>().SetPathVectors(pathManager.getPathVectors());
-
-        // Update the counters
-        if(waveList.waves[currentWaveIndex].subwaves[currentSubwaveIndex].count > enemiesSpawnedInSubwave + 1) {
-            // If we have more enemies to spawn in the wave, spawn them
-            enemiesSpawnedInSubwave++;
-        } else {
-            enemiesSpawnedInSubwave = 0;
-            // otherwise set up next spawn counters for the next wave
-            if(waveList.waves[currentWaveIndex].subwaves.Count > currentSubwaveIndex + 1) {
-                // Increment if there's another enemy in the subwave left
-                currentSubwaveIndex++;
-            } else {
-                currentSubwaveIndex = 0;
-                pauseEnemySpawn = true;
-                if(waveList.waves.Count > currentWaveIndex + 1) {
-                    // If there's another wave, increment it the counter so the next spawn is in the new wave
-                    currentWaveIndex++;
-                    pauseEnemySpawn = true;
-                    print("End of wave spawns. Press space to start new wave.");
-                } else {
-                    // FIXME: End of game. There's no more waves
-                }
-            }
-        }
     }
 }
