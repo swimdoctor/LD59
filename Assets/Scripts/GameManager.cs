@@ -70,7 +70,8 @@ public class GameManager : MonoBehaviour
     {
         if(selectedTower != null)
         {
-            selectedTower.UpgradeTower();
+            // FIXME: Call the upgrade to tower here
+            // selectedTower.GetComponent<Tower>.UpgradeTower();
         }
     }
 }
