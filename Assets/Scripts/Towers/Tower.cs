@@ -14,6 +14,10 @@ public abstract class Tower : MonoBehaviour
 	public static List<Tower> towers;
 
 	public bool starting;
+	[SerializeField]
+	protected int level = 1;
+	protected Dictionary<int, int> levelToUpgradeCost;
+
 
 	[SerializeField] private float activeCooldown;
 	public bool Active 
@@ -29,7 +33,7 @@ public abstract class Tower : MonoBehaviour
 	public TowerType detection;
 
 	public abstract TowerType TowerType { get; }
-	public abstract int Damage { get; }
+	public abstract int Damage { get; set; }
 	public virtual float Cooldown { get => 0.1f; }
 	
 	protected float attackCooldown = 0;
@@ -94,5 +98,25 @@ public abstract class Tower : MonoBehaviour
 	public static void DisableTowers()
 	{
 		foreach(Tower tower in towers) tower.enabled = false;
+	}
+
+	/*
+	*  Returns -1 if there is no cost
+	*/
+	public int getUpgradeCost()
+	{
+		if (levelToUpgradeCost.TryGetValue(level, out int upgradeCost))
+		{
+			return upgradeCost;
+		}
+		else
+		{
+			return -1;
+		}
+	}
+
+	public int getLevel()
+	{
+		return level;
 	}
 }

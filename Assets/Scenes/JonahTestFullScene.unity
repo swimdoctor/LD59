@@ -801,7 +801,7 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   text: {fileID: 1581751364}
-  money: 100
+  money: 300
 --- !u!50 &334313034
 Rigidbody2D:
   serializedVersion: 5
@@ -2046,7 +2046,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   towerText: {fileID: 1093650293}
+  upgradeTowerButtonText: {fileID: 1277002415}
   updateMenu: {fileID: 1823799739}
+  player: {fileID: 334313033}
 --- !u!4 &1212237512
 Transform:
   m_ObjectHideFlags: 0

@@ -8,8 +8,10 @@ using System.Runtime.InteropServices;
 public class GameManager : MonoBehaviour
 {
     public TMP_Text towerText;
+    public TMP_Text upgradeTowerButtonText;
     public GameObject updateMenu;
     private GameObject selectedTower = null; // null if no tower selected
+    public PlayerController player;
     void Update()
     {
         if (Mouse.current.leftButton.wasPressedThisFrame)
@@ -23,7 +25,6 @@ public class GameManager : MonoBehaviour
                 GameObject obj = col.gameObject;
                 if (obj.layer == LayerMask.NameToLayer("Towers"))
                 {
-                    Debug.Log("Tower clicked: " + obj.name);
                     hitTower = true;
                     selectedTower = obj;
                 }
@@ -36,14 +37,11 @@ public class GameManager : MonoBehaviour
             bool hitUpgradeUI = false;
             List<RaycastResult> results = new List<RaycastResult>();
             EventSystem.current.RaycastAll(pointerData, results);
-            print("Length of results: " + results.Count);
             foreach (RaycastResult result in results)
             {
-                Debug.Log("UI clicked: " + result.gameObject.name);
                 GameObject obj = result.gameObject;
                 if (obj.CompareTag("UpgradeUI"))
                 {
-                    Debug.Log("Clicked UI with tag UpgradeUI: " + obj.name);
                     hitUpgradeUI = true;
                 }
             }
@@ -60,18 +58,31 @@ public class GameManager : MonoBehaviour
             {
                 updateMenu.SetActive(true);
                 towerText.text = selectedTower.name;
+                int upgradeCost = selectedTower.GetComponent<Tower>().getUpgradeCost();
+                UpdateButtonText(upgradeCost);
             }
+        }
+    }
 
-            print("Tower Selected: " + selectedTower);
+    private void UpdateButtonText(int upgradeCost)
+    {
+        if(upgradeCost >= 0)
+        {
+            upgradeTowerButtonText.text = "Upgrade: $" + upgradeCost;
+        } else
+        {
+            upgradeTowerButtonText.text = "Max Upgrade";
         }
     }
 
     public void UpgradeTower()
     {
-        if(selectedTower != null)
+        if(selectedTower != null && player.money >= selectedTower.GetComponent<Tower>().getUpgradeCost())
         {
-            // FIXME: Call the upgrade to tower here
-            // selectedTower.GetComponent<Tower>.UpgradeTower();
+            player.ChangeMoney(-selectedTower.GetComponent<Tower>().getUpgradeCost());
+            selectedTower.GetComponent<Tower>().UpgradeTower();
+            int upgradeCost = selectedTower.GetComponent<Tower>().getUpgradeCost();
+            UpdateButtonText(upgradeCost);
         }
     }
 }
