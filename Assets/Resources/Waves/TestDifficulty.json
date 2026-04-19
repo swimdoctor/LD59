@@ -3,16 +3,133 @@
     {
       "waveNumber": 1,
       "subwaves": [
-        { "type": "TestEnemy1", "count": 5, "spawnInterval": 1.0, "startTime": 0 }
+        { "type": "TestEnemy1", "count": 10, "spawnInterval": 1.0, "startTime": 0}
       ]
     },
     {
       "waveNumber": 2,
       "subwaves": [
-        { "type": "TestEnemy2", "count": 5, "spawnInterval": 0.8, "startTime": 0 },
-        { "type": "TestEnemy1", "count": 10, "spawnInterval": 0.2, "startTime": 0 },
-        { "type": "TestEnemy1", "count": 5, "spawnInterval": 0.5, "startTime": 5 }
+        { "type": "TestEnemy1", "count": 15, "spawnInterval": 0.7, "startTime": 0}
+      ]
+    },
+        {
+      "waveNumber": 3,
+      "subwaves": [
+        { "type": "TestEnemy1", "count": 7, "spawnInterval": 1, "startTime": 0},
+        { "type": "TestEnemy2", "count": 5, "spawnInterval": 0.8, "startTime": 5}
+      ]
+    },
+    {
+      "waveNumber": 4,
+      "subwaves": [
+        { "type": "TestEnemy1", "count": 10, "spawnInterval": 0.8, "startTime": 0},
+        { "type": "TestEnemy2", "count": 8, "spawnInterval": 0.8, "startTime": 6}
+      ]
+    },
+        {
+      "waveNumber": 5,
+      "subwaves": [
+        { "type": "TestEnemy2", "count": 15, "spawnInterval": 0.5, "startTime": 0}
+      ]
+    },
+    {
+      "waveNumber": 6,
+      "subwaves": [
+        { "type": "TestEnemy1", "count": 7, "spawnInterval": 1, "startTime": 0},
+        { "type": "TestEnemy2", "count": 10, "spawnInterval": 0.8, "startTime": 5},
+        { "type": "TestEnemy1", "count": 7, "spawnInterval": 0.5, "startTime": 12}
+      ]
+    },
+        {
+      "waveNumber": 7,
+      "subwaves": [
+        { "type": "TestEnemy2", "count": 7, "spawnInterval": 1, "startTime": 0},
+        { "type": "TestEnemy1", "count": 10, "spawnInterval": 0.8, "startTime": 5},
+        { "type": "TestEnemy2", "count": 7, "spawnInterval": 0.5, "startTime": 12}
+      ]
+    },
+    {
+      "waveNumber": 8,
+      "subwaves": [
+        { "type": "TestEnemy3", "count": 8, "spawnInterval": 1, "startTime": 0}
+      ]
+    },
+        {
+      "waveNumber": 9,
+      "subwaves": [
+        { "type": "TestEnemy1", "count": 7, "spawnInterval": 0.8, "startTime": 0},
+        { "type": "TestEnemy2", "count": 10, "spawnInterval": 0.8, "startTime": 6},
+        { "type": "TestEnemy3", "count": 4, "spawnInterval": 1, "startTime": 12}
+      ]
+    },
+    {
+      "waveNumber": 10,
+      "subwaves": [
+        { "type": "TestEnemy3", "count": 15, "spawnInterval": 0.8, "startTime": 0}
+      ]
+    },
+        {
+      "waveNumber": 11,
+      "subwaves": [
+        { "type": "TestEnemy2", "count": 30, "spawnInterval": 0.8, "startTime": 0}
+      ]
+    },
+    {
+      "waveNumber": 12,
+      "subwaves": [
+        { "type": "TestEnemy1", "count": 10, "spawnInterval": 0.8, "startTime": 0},
+        { "type": "TestEnemy2", "count": 10, "spawnInterval": 0.8, "startTime": 8},
+        { "type": "TestEnemy3", "count": 10, "spawnInterval": 0.8, "startTime": 14}
+      ]
+    },
+        {
+      "waveNumber": 13,
+      "subwaves": [
+        { "type": "TestEnemy2", "count": 10, "spawnInterval": 0.5, "startTime": 0},
+        { "type": "TestEnemy3", "count": 12, "spawnInterval": 0.8, "startTime": 5}
+      ]
+    },
+    {
+      "waveNumber": 14,
+      "subwaves": [
+        { "type": "TestEnemy3", "count": 7, "spawnInterval": 1, "startTime": 0},
+        { "type": "TestEnemy2", "count": 10, "spawnInterval": 0.8, "startTime": 5},
+        { "type": "TestEnemy3", "count": 7, "spawnInterval": 0.5, "startTime": 12}
+      ]
+    },
+        {
+      "waveNumber": 15,
+      "subwaves": [
+        { "type": "TestEnemy4", "count": 8, "spawnInterval": 0.8, "startTime": 0}
+      ]
+    },
+    {
+      "waveNumber": 16,
+      "subwaves": [
+        { "type": "TestEnemy3", "count": 10, "spawnInterval": 0.5, "startTime": 0},
+        { "type": "TestEnemy4", "count": 5, "spawnInterval": 1, "startTime": 5}
+      ]
+    },
+            {
+      "waveNumber": 17,
+      "subwaves": [
+        { "type": "TestEnemy3", "count": 15, "spawnInterval": 0.3, "startTime": 5}
+      ]
+    },
+    {
+      "waveNumber": 18,
+      "subwaves": [
+        { "type": "TestEnemy1", "count": 12, "spawnInterval": 1, "startTime": 0},
+        { "type": "TestEnemy4", "count": 12, "spawnInterval": 0.8, "startTime": 2},
+        { "type": "TestEnemy3", "count": 12, "spawnInterval": 0.5, "startTime": 7}
+      ]
+    },
+        {
+      "waveNumber": 19,
+      "subwaves": [
+        { "type": "TestEnemy4", "count": 20, "spawnInterval": 0.8, "startTime": 0}
       ]
     }
   ]
 }
+
