@@ -280,11 +280,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 454ff192107291940bd74dc3995c33ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  starting: 0
-  active: 0
+  starting: 1
+  activeCooldown: 0
   detection: 0
-  cooldown: 0.1
-  damage: 4
 --- !u!61 &5040466662910561505
 BoxCollider2D:
   m_ObjectHideFlags: 0
