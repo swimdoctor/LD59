@@ -8,6 +8,7 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 {
     public GameObject prefab;
     public Image icon;
+    public int cost = 50;
 
     private Camera mainCamera;
     private PlayerController player;
@@ -39,9 +40,9 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (player == null || player.money < 50)
+        if (player == null || player.money < cost)
             return;
-        player.ChangeMoney(-50);
+        player.ChangeMoney(-cost);
         rotation = 0f;
 
         Vector3 worldPos = mainCamera.ScreenToWorldPoint(eventData.position);
@@ -66,15 +67,21 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        placedObject = null;
+		if(!CheckValidPosition(placedObject.transform.position))
+        {
+            Destroy(placedObject);
+            player.ChangeMoney(cost);
+        }
+		placedObject = null;
     }
 
     public bool CheckValidPosition(Vector3 pos)
     {
         if(tilemap.OverlapPoint(pos)) return false;
-
+        
         foreach(Tower t in Tower.towers)
         {
+            if(t == placedObject.GetComponent<Tower>()) continue;
             if(Vector3.Distance(t.transform.position, pos) < .9) return false;
         }
 
