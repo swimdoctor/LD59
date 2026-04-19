@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void AddMoney(int amount)
+    public void ChangeMoney(int amount)
     {
         money += amount;
         text.SetText("Money: " + money);

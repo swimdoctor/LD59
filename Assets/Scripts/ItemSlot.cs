@@ -31,7 +31,7 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         // Only allow drag if player has at least 50 money
         if (player == null || player.money < 50)
             return;
-        player.money -= 50;
+        player.ChangeMoney(-50);
         // create prefab
         Vector3 worldPos = mainCamera.ScreenToWorldPoint(eventData.position);
         worldPos.z = 0f;
@@ -68,5 +68,8 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         if (dragIcon != null)
             Destroy(dragIcon);
+
+        if (placedObject != null) 
+            placedObject = null;
     }
 }

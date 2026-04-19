@@ -72,7 +72,7 @@ public class EnemyController : MonoBehaviour
 
     void OnDestroy()
 {
-    guy.AddMoney(10);
+    guy.ChangeMoney(10);
 }
 
     public enum EnemyType
