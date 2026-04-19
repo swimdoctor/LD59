@@ -62,5 +62,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 
 # Ignore user settings
-UserSettings/
+/UserSettings/
 .DS_Store
