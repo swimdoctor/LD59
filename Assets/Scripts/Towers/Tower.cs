@@ -15,6 +15,17 @@ public abstract class Tower : MonoBehaviour
 
 	public bool starting;
 
+	// Level Management vars
+	[SerializeField]
+	protected int level = 1;
+	protected Dictionary<int, int> levelToUpgradeCost;
+
+	// Slow Management Vars. Overridden in EQ tower
+	[SerializeField]
+	protected float speedMultiplier = 1f;
+	[SerializeField]
+	protected float slowDuration = 0f;
+
 	[SerializeField] private float activeCooldown;
 	public bool Active 
 	{
@@ -29,7 +40,7 @@ public abstract class Tower : MonoBehaviour
 	public TowerType detection;
 
 	public abstract TowerType TowerType { get; }
-	public abstract int Damage { get; }
+	public abstract int Damage { get; set; }
 	public virtual float Cooldown { get => 0.1f; }
 	
 	protected float attackCooldown = 0;
@@ -81,13 +92,38 @@ public abstract class Tower : MonoBehaviour
 			}
 			else if(enemy != null)
 			{
-				enemy.TakeDamage(Damage);
+				enemy.TakeDamage(Damage, speedMultiplier, slowDuration);
 			}
 		}
+	}
+
+	public virtual void UpgradeTower()
+	{
+		
 	}
 
 	public static void DisableTowers()
 	{
 		foreach(Tower tower in towers) tower.enabled = false;
+	}
+
+	/*
+	*  Returns -1 if there is no cost
+	*/
+	public int getUpgradeCost()
+	{
+		if (levelToUpgradeCost.TryGetValue(level, out int upgradeCost))
+		{
+			return upgradeCost;
+		}
+		else
+		{
+			return -1;
+		}
+	}
+
+	public int getLevel()
+	{
+		return level;
 	}
 }

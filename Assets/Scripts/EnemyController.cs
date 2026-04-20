@@ -13,6 +13,10 @@ public class EnemyController : MonoBehaviour
 
     public EnemyType enemyType;
 
+    // Temp var
+    private float speedMultiplier = 1f;
+    private float slowDuration = 0f;
+
     // Pathing
     // Path vectors is initialized by the WaveSpawner instantiation
     private List<Vector2> pathVectors;
@@ -30,15 +34,22 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CalculateSpeed();
         MoveEnemy();
-        // Vector3 direction = (Vector3)player.transform.position - (Vector3)transform.position;
-        // direction.Normalize();
-        // transform.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
     }
 
     public void SetPathVectors(List<Vector2> vectors)
     {
         pathVectors = vectors;
+    }
+
+    void CalculateSpeed()
+    {
+        slowDuration -= Time.deltaTime;
+        if(slowDuration <= 0)
+        {
+            speedMultiplier = 1f;
+        }
     }
 
     void MoveEnemy()
@@ -51,7 +62,7 @@ public class EnemyController : MonoBehaviour
             transform.position = Vector2.MoveTowards(
                 transform.position,
                 targetVec,
-                moveSpeed * Time.deltaTime
+                moveSpeed * speedMultiplier * Time.deltaTime
             );
 
             if (Vector2.Distance(transform.position, targetVec) < 0.1f)
@@ -61,8 +72,13 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-	public void TakeDamage(int amount)
+	public void TakeDamage(int amount, float speedMultiplier, float slowDuration)
 	{
+        // Adjust speed
+        this.slowDuration = slowDuration;
+        this.speedMultiplier = speedMultiplier;
+
+        // Adjust health
 		currentHealth -= amount;
 		if(currentHealth <= 0)
 		{
