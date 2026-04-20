@@ -36,8 +36,8 @@
       "waveNumber": 6,
       "subwaves": [
         { "type": "TestEnemy1", "count": 7, "spawnInterval": 1, "startTime": 0},
-        { "type": "TestEnemy2", "count": 10, "spawnInterval": 0.8, "startTime": 5},
-        { "type": "TestEnemy1", "count": 7, "spawnInterval": 0.5, "startTime": 12}
+        { "type": "TestEnemy2", "count": 10, "spawnInterval": 0.8, "startTime": 4},
+        { "type": "TestEnemy1", "count": 7, "spawnInterval": 0.5, "startTime": 10}
       ]
     },
         {
@@ -71,22 +71,22 @@
         {
       "waveNumber": 11,
       "subwaves": [
-        { "type": "TestEnemy2", "count": 30, "spawnInterval": 0.8, "startTime": 0}
+        { "type": "TestEnemy2", "count": 30, "spawnInterval": 0.5, "startTime": 0}
       ]
     },
     {
       "waveNumber": 12,
       "subwaves": [
-        { "type": "TestEnemy1", "count": 10, "spawnInterval": 0.8, "startTime": 0},
-        { "type": "TestEnemy2", "count": 10, "spawnInterval": 0.8, "startTime": 8},
-        { "type": "TestEnemy3", "count": 10, "spawnInterval": 0.8, "startTime": 14}
+        { "type": "TestEnemy1", "count": 10, "spawnInterval": 0.7, "startTime": 0},
+        { "type": "TestEnemy2", "count": 10, "spawnInterval": 0.7, "startTime": 5},
+        { "type": "TestEnemy3", "count": 10, "spawnInterval": 0.7, "startTime": 10}
       ]
     },
         {
       "waveNumber": 13,
       "subwaves": [
         { "type": "TestEnemy2", "count": 10, "spawnInterval": 0.5, "startTime": 0},
-        { "type": "TestEnemy3", "count": 12, "spawnInterval": 0.8, "startTime": 5}
+        { "type": "TestEnemy3", "count": 12, "spawnInterval": 0.7, "startTime": 5}
       ]
     },
     {
@@ -107,7 +107,7 @@
       "waveNumber": 16,
       "subwaves": [
         { "type": "TestEnemy3", "count": 10, "spawnInterval": 0.5, "startTime": 0},
-        { "type": "TestEnemy4", "count": 5, "spawnInterval": 1, "startTime": 5}
+        { "type": "TestEnemy4", "count": 5, "spawnInterval": 0.8, "startTime": 5}
       ]
     },
             {
