@@ -3,9 +3,18 @@ using System.Collections.Generic;
 
 public class PathManager : MonoBehaviour
 {
-    public List<GameObject> pathwayNodes;
+    private List<GameObject> pathwayNodes = new List<GameObject>();
     private List<Vector2> pathVectors;
-    void Start()
+
+	private void Awake()
+	{
+		for(int i = 0; i < transform.childCount; i++)
+        {
+            pathwayNodes.Add(transform.GetChild(i).gameObject);
+        }
+	}
+
+	void Start()
     {
         pathVectors = new List<Vector2>();
         foreach(GameObject node in pathwayNodes)

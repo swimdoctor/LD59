@@ -81,7 +81,6 @@ public abstract class Tower : MonoBehaviour
 			}
 			else if(enemy != null)
 			{
-				print("AAAAAAAAAAAAAAAAAA");
 				enemy.TakeDamage(Damage);
 			}
 		}
