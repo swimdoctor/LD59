@@ -107,10 +107,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   moveSpeed: 2
-  maxHealth: 100
+  maxHealth: 50
   currentHealth: 0
-  damage: 10
+  damage: 1
+  value: 3
   player: {fileID: 0}
+  guy: {fileID: 0}
   enemyType: 0
 --- !u!61 &5134952084626622942
 BoxCollider2D:
