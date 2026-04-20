@@ -72,11 +72,11 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-	public void TakeDamage(int amount, float speedMultiplier, float slowDuration)
+	public void TakeDamage(int amount, float speedMultiplier = 1, float slowDuration = 0)
 	{
         // Adjust speed
-        this.slowDuration = slowDuration;
-        this.speedMultiplier = speedMultiplier;
+        this.slowDuration = Mathf.Max(slowDuration, this.slowDuration);
+        this.speedMultiplier = Mathf.Min(speedMultiplier, this.speedMultiplier);
 
         // Adjust health
 		currentHealth -= amount;

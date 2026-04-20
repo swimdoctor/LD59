@@ -14,6 +14,7 @@ public abstract class Tower : MonoBehaviour
 	public static List<Tower> towers;
 
 	public bool starting;
+	public bool isMoving = false;
 
 	// Level Management vars
 	[SerializeField]
@@ -56,6 +57,7 @@ public abstract class Tower : MonoBehaviour
 
 	public virtual void Update()
 	{
+		if(isMoving) return;
 		if(Active)
 		{
 			attackCooldown += Time.deltaTime;
@@ -97,10 +99,7 @@ public abstract class Tower : MonoBehaviour
 		}
 	}
 
-	public virtual void UpgradeTower()
-	{
-		
-	}
+	public abstract void UpgradeTower();
 
 	public static void DisableTowers()
 	{
@@ -125,5 +124,10 @@ public abstract class Tower : MonoBehaviour
 	public int getLevel()
 	{
 		return level;
+	}
+
+	public void OnDestroy()
+	{
+		towers.Remove(this);
 	}
 }

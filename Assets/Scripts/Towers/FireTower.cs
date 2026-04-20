@@ -5,6 +5,8 @@ public class FireTower : Tower
 {
 	public override TowerType TowerType => TowerType.Fire;
 	public override int Damage { get; set; } = 4;
+
+
 	void Start()
 	{
 		levelToUpgradeCost = new Dictionary<int, int>

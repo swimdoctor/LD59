@@ -28,12 +28,23 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         }
     }
 
+    float turnDelay = 0;
+
     void Update()
     {
+        turnDelay -= Time.deltaTime;
         if (placedObject == null) return;
 
-        if (Keyboard.current.qKey.isPressed) rotation += 100f * Time.deltaTime;
-        if (Keyboard.current.eKey.isPressed) rotation -= 100f * Time.deltaTime;
+        if(turnDelay <= 0 && Keyboard.current.qKey.isPressed)
+        {
+			rotation += 45;
+            turnDelay = .1f;
+		}
+		if(turnDelay <= 0 && Keyboard.current.eKey.isPressed)
+		{
+			rotation -= 45;
+			turnDelay = .1f;
+		}
 
         placedObject.transform.rotation = Quaternion.Euler(0, 0, rotation);
     }
@@ -48,7 +59,9 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         Vector3 worldPos = mainCamera.ScreenToWorldPoint(eventData.position);
         worldPos.z = 0f;
         placedObject = Instantiate(prefab, worldPos, Quaternion.identity);
-    }
+        placedObject.GetComponent<Tower>().isMoving = true;
+
+	}
 
     public void OnDrag(PointerEventData eventData)
     {
@@ -67,12 +80,18 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if(placedObject == null) return;
 		if(!CheckValidPosition(placedObject.transform.position))
         {
             Destroy(placedObject);
             player.ChangeMoney(cost);
         }
-		placedObject = null;
+        else
+        {
+			placedObject.GetComponent<Tower>().isMoving = false;
+			placedObject.GetComponent<SpriteRenderer>().color = Color.white;
+		}
+        placedObject = null;
     }
 
     public bool CheckValidPosition(Vector3 pos)

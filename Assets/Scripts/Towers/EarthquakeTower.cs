@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class EarthquakeTower : Tower
 {
 	public override TowerType TowerType => TowerType.Earthquake;
-	public override int Damage { get; set; } = 20;
+	public override int Damage { get; set; } = 10;
 	public override float Cooldown => 1f;
 
 	public float maxAlpha;
@@ -40,7 +40,7 @@ public class EarthquakeTower : Tower
 		{
 			level++;
 			// FIXME: Add slow
-			speedMultiplier = 0.5f;
+			speedMultiplier = 0.65f;
 		} 
 		else
 		{
