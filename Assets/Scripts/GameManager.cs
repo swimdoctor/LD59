@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
 
     public void UpgradeTower()
     {
-        if(selectedTower != null && player.money >= selectedTower.GetComponent<Tower>().getUpgradeCost())
+        if(selectedTower != null && selectedTower.GetComponent<Tower>().getUpgradeCost() >= 0 && player.money >= selectedTower.GetComponent<Tower>().getUpgradeCost())
         {
             player.ChangeMoney(-selectedTower.GetComponent<Tower>().getUpgradeCost());
             selectedTower.GetComponent<Tower>().UpgradeTower();

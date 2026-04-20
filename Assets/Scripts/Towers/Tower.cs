@@ -14,10 +14,17 @@ public abstract class Tower : MonoBehaviour
 	public static List<Tower> towers;
 
 	public bool starting;
+
+	// Level Management vars
 	[SerializeField]
 	protected int level = 1;
 	protected Dictionary<int, int> levelToUpgradeCost;
 
+	// Slow Management Vars. Overridden in EQ tower
+	[SerializeField]
+	protected float speedMultiplier = 1f;
+	[SerializeField]
+	protected float slowDuration = 0f;
 
 	[SerializeField] private float activeCooldown;
 	public bool Active 
@@ -85,7 +92,7 @@ public abstract class Tower : MonoBehaviour
 			}
 			else if(enemy != null)
 			{
-				enemy.TakeDamage(Damage);
+				enemy.TakeDamage(Damage, speedMultiplier, slowDuration);
 			}
 		}
 	}

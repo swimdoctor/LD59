@@ -11,6 +11,9 @@ public class EarthquakeTower : Tower
 	public float maxAlpha;
 	public float minAlpha;
 
+	private float speedMultiplierOverride = 0.75f;
+	private float slowDurationOverride = 2f;
+
 	public override void Update()
 	{
 		base.Update();
@@ -20,6 +23,11 @@ public class EarthquakeTower : Tower
 
 	void Start()
 	{
+		// Set slows
+		speedMultiplier = speedMultiplierOverride;
+		slowDuration = slowDurationOverride;
+		
+		// Set dict
 		levelToUpgradeCost = new Dictionary<int, int>
         {
             { 1, 120 } // init with level 1 upgrade costing $150
@@ -32,6 +40,7 @@ public class EarthquakeTower : Tower
 		{
 			level++;
 			// FIXME: Add slow
+			speedMultiplier = 0.5f;
 		} 
 		else
 		{
