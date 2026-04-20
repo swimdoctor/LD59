@@ -274,9 +274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LaserTower
   starting: 0
   activeCooldown: 0
-  detection: 0
-  cooldown: 0.1
-  damage: 0
+  detection: 3
 --- !u!61 &5919544374894515086
 BoxCollider2D:
   m_ObjectHideFlags: 0

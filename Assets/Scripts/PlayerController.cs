@@ -5,19 +5,20 @@ public class PlayerController : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
     public Money text;
-    public int money = 100;
-
+    public HealthText hp;
+    public int money = 150;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentHealth = maxHealth;
         text.SetText("Money: " + money);
+        hp.SetText("HP: " + currentHealth);
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        hp.SetText("HP: " + currentHealth);
     }
 
     public void ChangeMoney(int amount)
