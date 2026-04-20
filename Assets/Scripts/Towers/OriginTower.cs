@@ -27,7 +27,6 @@ public class OriginTower : Tower
 			{
 				if(tower == this) continue;
                 tower.Active = true;
-                print("please work");
 			}
 			else if(enemy != null)
 			{

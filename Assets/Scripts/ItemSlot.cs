@@ -46,7 +46,7 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 			turnDelay = .1f;
 		}
 
-        placedObject.transform.rotation = Quaternion.Euler(0, 0, rotation);
+        placedObject.transform.GetChild(0).rotation = Quaternion.Euler(0, 0, rotation);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -90,6 +90,7 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         {
 			placedObject.GetComponent<Tower>().isMoving = false;
 			placedObject.GetComponent<SpriteRenderer>().color = Color.white;
+			placedObject.GetComponent<Tower>().Active = false;
 		}
         placedObject = null;
     }
@@ -101,6 +102,7 @@ public class ItemSlot : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         foreach(Tower t in Tower.towers)
         {
             if(t == placedObject.GetComponent<Tower>()) continue;
+            if(t.TowerType == TowerType.Origin) continue;
             if(Vector3.Distance(t.transform.position, pos) < .9) return false;
         }
 

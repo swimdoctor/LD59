@@ -1,28 +1,19 @@
 fileFormatVersion: 2
-guid: 346693381b762db42a50b6b3aeb14226
+guid: 0b78731c1ab39a54182f86b56916cce9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 826266273571000575
-    second: Monster2_0
+      213: -7482177786666212508
+    second: Monster_0
   - first:
-      213: -3577218566575389935
-    second: Monster2_1
+      213: -7783437513647718680
+    second: Monster_1
   - first:
-      213: -8559531344088141233
-    second: Monster2_2
+      213: -724056971925584315
+    second: Monster_2
   - first:
-      213: 1679858549081147529
-    second: Monster2_3
-  - first:
-      213: 288785907083668257
-    second: Monster2_4
-  - first:
-      213: 4534588156093143792
-    second: Monster2_5
-  - first:
-      213: 863497713751549555
-    second: Monster2_6
+      213: -233947400402218603
+    second: Monster_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -131,155 +122,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Monster2_0
+      name: Monster_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 69
-        width: 21
-        height: 19
+        x: 0
+        y: 40
+        width: 40
+        height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ff0d51e4ccc777b00800000000000000
-      internalID: 826266273571000575
+      spriteID: 463217ff1f6f92890800000000000000
+      internalID: -7482177786666212508
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monster2_1
-      rect:
-        serializedVersion: 2
-        x: 39
-        y: 71
-        width: 22
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1138757aaaa2b5ec0800000000000000
-      internalID: -3577218566575389935
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monster2_2
-      rect:
-        serializedVersion: 2
-        x: 72
-        y: 72
-        width: 21
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f42fdc7c79f663980800000000000000
-      internalID: -8559531344088141233
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monster2_3
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 39
-        width: 22
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 98882ea337e005710800000000000000
-      internalID: 1679858549081147529
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Monster2_4
+      name: Monster_1
       rect:
         serializedVersion: 2
         x: 40
-        y: 37
-        width: 21
-        height: 19
+        y: 40
+        width: 40
+        height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 12b6cdf9049f10400800000000000000
-      internalID: 288785907083668257
+      spriteID: 8eef39bd1dcabf390800000000000000
+      internalID: -7783437513647718680
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monster2_5
+      name: Monster_2
       rect:
         serializedVersion: 2
-        x: 72
-        y: 37
-        width: 21
-        height: 18
+        x: 0
+        y: 0
+        width: 40
+        height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0fa10a617e71eee30800000000000000
-      internalID: 4534588156093143792
+      spriteID: 5460b3f2502a3f5f0800000000000000
+      internalID: -724056971925584315
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Monster2_6
+      name: Monster_3
       rect:
         serializedVersion: 2
-        x: 8
-        y: 5
-        width: 21
-        height: 19
+        x: 40
+        y: 0
+        width: 40
+        height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 376e58c7892cbfb00800000000000000
-      internalID: 863497713751549555
+      spriteID: 59156ee241ad0ccf0800000000000000
+      internalID: -233947400402218603
       vertices: []
       indices: 
       edges: []
@@ -288,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 834fe34208579684ebcf3e6f221e23aa
     internalID: 0
     vertices: []
     indices: 
@@ -296,15 +221,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":2.0,"y":2.0},"gridSpriteSize":{"x":40.0,"y":40.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Monster2_0: 826266273571000575
-      Monster2_1: -3577218566575389935
-      Monster2_2: -8559531344088141233
-      Monster2_3: 1679858549081147529
-      Monster2_4: 288785907083668257
-      Monster2_5: 4534588156093143792
-      Monster2_6: 863497713751549555
+      Monster_0: -7482177786666212508
+      Monster_1: -7783437513647718680
+      Monster_2: -724056971925584315
+      Monster_3: -233947400402218603
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

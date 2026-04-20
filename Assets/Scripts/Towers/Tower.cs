@@ -60,7 +60,7 @@ public abstract class Tower : MonoBehaviour
 		towers ??= new List<Tower>();
 		if(!towers.Contains(this)) towers.Add(this);
 
-		hitbox = transform.Find("Hitbox").GetComponent<Rigidbody2D>();
+		hitbox = transform.GetChild(0).Find("Hitbox").GetComponent<Rigidbody2D>();
 		if(starting) activeCooldown = -1;
 	}
 

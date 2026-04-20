@@ -87,7 +87,7 @@ public class LaserTower : Tower
 		if(enemies.Count >= pierce)
 		{
 			distance = Vector3.Distance(enemies[pierce - 1].transform.position, transform.position);
-			print(Vector3.Distance(enemies[pierce - 1].transform.position, transform.position));
+			if(t && Vector3.Distance(t.transform.position, transform.position) < distance) t.Active = true;
 		}
 		else if(t) t.Active = true;
 	}
