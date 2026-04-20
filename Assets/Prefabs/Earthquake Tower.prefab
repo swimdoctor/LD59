@@ -263,8 +263,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EarthquakeTower
   starting: 0
+  isMoving: 0
+  level: 1
+  speedMultiplier: 1
+  slowDuration: 0
   activeCooldown: 0
   detection: 0
+  detectOrigin: 5
   maxAlpha: 0.9
   minAlpha: 0.3
 --- !u!60 &8172828753136355212

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class LaserTower : Tower
 {
 	public override TowerType TowerType => TowerType.Laser;
-	public override int Damage { get; set; } = 2;
+	public override int Damage { get; set; } = 3;
 
 	public int pierce = 5;
 
