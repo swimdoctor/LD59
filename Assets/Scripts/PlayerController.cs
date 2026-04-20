@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -8,6 +9,12 @@ public class PlayerController : MonoBehaviour
     public HealthText hp;
     public int money = 150;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public static event Action OnPlayerDeath;
+
+    private void Die()
+    {
+        OnPlayerDeath?.Invoke();
+    }
     void Start()
     {
         currentHealth = maxHealth;
@@ -33,6 +40,7 @@ public class PlayerController : MonoBehaviour
         print("Health: " + currentHealth);
         if (currentHealth <= 0)
         {
+            OnPlayerDeath?.Invoke();
             print("u r a bum");
         }
     }
