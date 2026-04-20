@@ -6,7 +6,8 @@ public enum TowerType {
 	Laser,
 	Wind,
 	Earthquake,
-	Sound
+	Sound,
+	Origin
 }
 
 public abstract class Tower : MonoBehaviour
@@ -33,12 +34,20 @@ public abstract class Tower : MonoBehaviour
 		get => activeCooldown > 0 || activeCooldown == -1;
 		set
 		{
-			activeCooldown = (value ? 1 : 0);
+			if (value)
+			{
+				activeCooldown = 1;
+			}
+			else
+			{
+				activeCooldown = 0;
+			}
 			hitbox.GetComponent<SpriteRenderer>().enabled = Active;
 		}
 	}
 	protected Rigidbody2D hitbox;
 	public TowerType detection;
+	public TowerType detectOrigin;
 
 	public abstract TowerType TowerType { get; }
 	public abstract int Damage { get; set; }
@@ -89,7 +98,7 @@ public abstract class Tower : MonoBehaviour
 			if(tower != null)
 			{
 				if(tower == this) continue;
-
+				if(tower.detectOrigin == TowerType) tower.Active = true;
 				if(tower.detection == TowerType) tower.Active = true;
 			}
 			else if(enemy != null)
