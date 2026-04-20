@@ -1,9 +1,19 @@
+using System.Runtime.InteropServices;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class LaserTower : Tower
 {
 	public override TowerType TowerType => TowerType.Laser;
-	public override int Damage => 3;
+	public override int Damage { get; set; } = 3;
+
+	void Start()
+	{
+		levelToUpgradeCost = new Dictionary<int, int>
+        {
+            { 1, 150 } // init with level 1 upgrade costing $150
+        };
+	}
 
 	public override void Update()
 	{
@@ -29,5 +39,18 @@ public class LaserTower : Tower
 		hitbox.GetComponent<SpriteRenderer>().size = new Vector2(distance, 1);
 		hitbox.GetComponent<BoxCollider2D>().offset = new Vector2(distance / 2 * 1.01f, 0);
 		hitbox.GetComponent<BoxCollider2D>().size = new Vector2(distance * 1.01f, 1);
+	}
+
+	public override void UpgradeTower()
+	{
+		if(level == 1)
+		{
+			level++;
+			// FIXME: Add +5 pierce
+		} 
+		else
+		{
+			print("Already max level");
+		}
 	}
 }
