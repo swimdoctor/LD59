@@ -129,6 +129,12 @@
       "subwaves": [
         { "type": "TestEnemy4", "count": 20, "spawnInterval": 0.7, "startTime": 0}
       ]
+    },
+        {
+      "waveNumber": 20,
+      "subwaves": [
+        { "type": "Boss", "count": 1, "spawnInterval": 1, "startTime": 0}
+      ]
     }
   ]
 }
