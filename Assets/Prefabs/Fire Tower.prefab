@@ -282,7 +282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   starting: 1
   activeCooldown: 0
-  detection: 0
+  detection: 1
 --- !u!61 &5040466662910561505
 BoxCollider2D:
   m_ObjectHideFlags: 0

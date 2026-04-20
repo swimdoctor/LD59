@@ -21,6 +21,8 @@ public class WaveSpawner : MonoBehaviour
     // Wave Tracking
     private double timer;
     private int currentWaveIndex = 0;
+    public WaveText wave;
+
 
     // PathingManager
     public PathManager pathManager;
@@ -49,11 +51,13 @@ public class WaveSpawner : MonoBehaviour
         foreach (GameObjectMapping o in enemyNameMappings) {
             enemyNameToPrefab[o.key] = o.value; 
         }
+        wave.SetText("Wave " + currentWaveIndex);
 
         print("Press Space to start spawning waves");
     }
 
     void StartWave() {
+        wave.SetText("Wave " + (currentWaveIndex+1));
         for(int i = 0; i < waveList.waves[currentWaveIndex].subwaves.Count; i++)
         {
             StartCoroutine(SpawnWave(waveList.waves[currentWaveIndex].subwaves[i]));

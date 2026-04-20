@@ -106,10 +106,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ce60ff4fd907424f959bf0e60384274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  moveSpeed: 2
-  maxHealth: 100
+  moveSpeed: 4
+  maxHealth: 150
   currentHealth: 0
-  damage: 10
+  damage: 3
+  value: 10
   player: {fileID: 0}
   guy: {fileID: 0}
   enemyType: 0

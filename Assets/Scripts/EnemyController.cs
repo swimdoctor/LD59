@@ -4,10 +4,11 @@ using System.Runtime.InteropServices;
 
 public class EnemyController : MonoBehaviour
 {
-    public int moveSpeed = 2;
+    public float moveSpeed = 2f;
     public int maxHealth = 100;
     public int currentHealth;
     public int damage = 10;
+    public int value;
     public GameObject player;
     public PlayerController guy;
 
@@ -72,7 +73,7 @@ public class EnemyController : MonoBehaviour
 
     void OnDestroy()
 {
-    guy.ChangeMoney(10);
+    guy.ChangeMoney(value);
 }
 
     public enum EnemyType
