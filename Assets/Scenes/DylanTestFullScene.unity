@@ -507,6 +507,8 @@ MonoBehaviour:
     value: {fileID: 5279280630807860770, guid: 17d9ec35b0fe937439711e0ce6b7f4cf, type: 3}
   - key: TestEnemy4
     value: {fileID: 5279280630807860770, guid: aa837a719db3dcb46b3739ab61ce1983, type: 3}
+  - key: Boss
+    value: {fileID: 5279280630807860770, guid: 0a7b5314111b0af4b9ee97fcf9548371, type: 3}
   player: {fileID: 334313032}
   fileNameWaves: TestDifficulty
   wave: {fileID: 663666804}
