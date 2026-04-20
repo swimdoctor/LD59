@@ -47,4 +47,18 @@ public class FireTower : Tower
 			enemies[i].TakeDamage(baseDamage);
 		}
 	}
+
+	public override void UpgradeTower()
+	{
+		if(level == 1)
+		{
+			level++;
+			// FIXME: Add damage
+			Damage *= 2;
+		}
+		else
+		{
+			print("Already max level");
+		}
+	}
 }
