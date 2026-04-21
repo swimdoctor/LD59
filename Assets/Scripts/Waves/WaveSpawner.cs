@@ -95,6 +95,7 @@ public class WaveSpawner : MonoBehaviour
         if (wc!=null)
         {
             wc.messageText = winText;
+            Camera.main.GetComponent<MusicScript>().swapSong(1);
         }
     }
 }

@@ -25,5 +25,6 @@ public class GameOverScreen : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+		Camera.main.GetComponent<MusicScript>().swapSong(0);
+	}
 }

@@ -3,22 +3,20 @@ using UnityEngine;
 
 public class MusicScript : MonoBehaviour
 {
-    public AudioSource audio;
-    // public AudioGenerator bossSong;
+	public AudioSource audio1;
+	public AudioSource audio2;
 
-    public void swapSong()
-    {
-        
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public void swapSong(int songIndex)
+	{
+		audio1.Stop();
+		audio2.Stop();
+		if(songIndex == 0)
+		{
+			audio1.Play();
+		}
+		if(songIndex == 1)
+		{
+			audio2.Play();
+		}
+	}
 }

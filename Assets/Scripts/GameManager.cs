@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public PlayerController player;
     void Update()
     {
+        if(Keyboard.current.escapeKey.wasPressedThisFrame) Application.Quit();
+
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             // Check for colliders
